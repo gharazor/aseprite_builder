@@ -106,9 +106,11 @@ jobs:
           -DLAF_BACKEND=skia ^
           -DSKIA_DIR=../../skia ^
           -DSKIA_LIBRARY_DIR=../../skia/out/Release-x64 ^
-          -DUSE_SHARED_LIBJPEG=OFF ^
-          -DUSE_SHARED_LIBPNG=OFF ^
-          -DUSE_SHARED_ZLIB=OFF ^
+          -DSKIA_LIBRARY=../../skia/out/Release-x64/skia.lib ^
+          -DSKIA_INCLUDE_DIR=../../skia ^
+          -DENABLE_LIBJPEG=OFF ^
+          -DENABLE_LIBPNG=OFF ^
+          -DENABLE_ZLIB=OFF ^
           -G Ninja ..
       - name: (Ubuntu) Run CMake
         if: matrix.os == 'ubuntu-latest'
