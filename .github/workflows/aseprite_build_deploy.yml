@@ -23,7 +23,7 @@ jobs:
     - name: Get latest version info
       id: version_info
       run: |
-        data=$(curl -sL https://api.github.com/repos/aseprite/aseprite/releases/latest)
+        data=$(curl -sL https://api.github.com/repos/aseprite/aseprite/releases/tags/v1.3.7)
         LATEST_TAG=$(echo "${data}" | jq -r '.tag_name')
         DOWNLOAD_URL=$(echo "${data}" | jq -r '.assets[].browser_download_url')
         VERSION_INFO=$(echo "${data}" | jq -r '.body')
@@ -77,11 +77,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: skia
-          key: skia-${{ matrix.os }}-cache-v2
+          key: skia-${{ matrix.os }}-cache-v3
       - name: Download Skia if not in cache
         if: steps.skia-cache.outputs.cache-hit != 'true'
         run: |
-          curl -L -o skia.zip https://github.com/aseprite/skia/releases/download/m124-08a5439a6b/Skia-Windows-Release-x64.zip
+          curl -L -o skia.zip https://github.com/aseprite/skia/releases/download/m102-861e4743af/Skia-Windows-Release-x64.zip
           unzip skia.zip -d skia
       - name: Download Aseprite release
         run: |
